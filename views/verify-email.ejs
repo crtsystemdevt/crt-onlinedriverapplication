@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="verify.css">
+    <title>Email verification</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- FORM -->
+                <form action="/email-verification" method="POST">
+                    <img src="images/crt logo full.png" alt="" class="recovery-logo">
+                    <div class="row information-label">
+                        <div class="col lock-label">
+                            Enter your email address so we can continue with your application!
+                        </div>
+                    </div>
+                    <hr>
+                    <input type="text" placeholder="Email" class="form-control recovery-text_box" onkeyup="validateEmail()" name="email" id="email" required>
+                    <label class="alertMsg"> <%= message %></label>
+                    <div class="alert alert-danger" id="email-invalid" style="margin-left: 0; margin-right: 0; margin-top: 0;" role="alert">
+                        Invalid Email!
+                    </div>
+                    <center><div class="g-recaptcha" data-sitekey="6Ld8KJMaAAAAAD__aIyLckKZQvEM9yT7ImcE9mvh" data-callback="enableBtn" style="width: 100%;"></div></center>
+                    <button class="send_btn" id="sendBtn" onclick="submitForm()">SEND </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var intervalId = window.setInterval(function(){
+            validateEmail();
+        }, 1000);
+        
+        document.getElementById("email-invalid").style.display = "none";
+        document.getElementById("sendBtn").disabled = true;
+        
+        let submitCounter = 0;
+
+        function enableBtn(){
+            submitCounter++;
+        }
+
+        function submitForm(){ 
+            document.getElementById("form").submit();
+        }
+
+        function validateEmail(){
+            // VALID EMAIL && CHECKED CAPTCHA == TRUE
+            // IF CAPTCHA IS NOT CHECKED WITH OR WITHOUT VALID EMAIL, FALSE
+            // IF EMAIL IS INVALID AND CAPTCHA IS CHECKED OR NOT == FALSE
+            // console.log(submitCounter)
+            var valid = true;
+
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+            //EMAIL
+            if(reg.test(document.getElementById("email").value) == false) {
+                //console.log("invalid email")
+                valid = false
+            }
+
+            //CAPTCHA
+            if(submitCounter == 0){
+                //console.log("unchecked")
+                valid = false;
+            } else{
+                //console.log("checked")
+            }
+
+            if(submitCounter != 0 && reg.test(document.getElementById("email").value) == true){
+                //console.log("valid you can go")
+                document.getElementById("sendBtn").disabled = false;
+                valid = true;
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>

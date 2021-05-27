@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/header.css">
+<title>Applicant Information Sheet</title>
+<body>
+
+    <!-- FIXED STICKY HEADER -->
+    <div id="navbar">
+        <img src="/images/crtlogo_transparent.png" alt="" class="headerLogo" draggable="false">
+    </div>
+    <h3 class="d-flex justify-content-center" style="margin-top: 150px;">APPLICANT INFORMATION SHEET</h3>
+    <div class="outer-form">
+        <form id="form"  action="/applicationPost/<%= data.id %>" method="post" role="form" enctype="multipart/form-data" onsubmit="return popup()">
+            
+            <!-- INFORMATION SHEET -->
+
+            <h5 class="text-center part_type" id="part_type">TYPE OF PART (WILL BE CHANGED IN THE SCRIPT)</h5> <!-- WILL CHANGED BY THE SCRIPT -->
+
+            <!-- PERSONAL INFORMATION -->
+
+            <div class="form-group row tab">
+                
+                <div class="alert alert-info" role="alert">
+                    <label class="required">*</label> indicates required field
+                </div>
+                <div class="col-lg-6">
+                    <label for="">First Name</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="firstName" placeholder="First name" name="firstName" value="" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="">Middle Name</label>
+                    <input type="text" class="form-control text_box" maxlength="100" oninput="this.className='form-control text_box'" id="" placeholder="Middle name" name="middleName" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="">Last Name</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Last Name" name="lastName" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="">Nickname</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Nickname" name="nickname" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="" name="sex">Sex</label> <label class="required">*</label>
+                    <select class="form-select text_box" name="sex">
+                        <option value="male" name="Male">Male</option>
+                        <option value="female" name="Female">Female</option>
+                    </select>
+                    <label for="">Home Address</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Home Address" name="homeAddress" oncopy="return false" onpaste="return false">
+                    
+                    <label for="">Birthdate</label> <label class="required">*</label>
+                    <input type="date" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" id="birthdate" placeholder="Birthdate" name="birthdate" oncopy="return false" onpaste="return false" onkeypress="return isName(event)">
+
+                    <label for="" name="location">Location/Area</label> <label class="required">*</label>
+                    <select class="form-select text_box" name="location">
+                        <option value="Metro Manila" name="Metro Manila">Metro Manila</option>
+                        <option value="Laguna" name="Laguna">Laguna</option>
+                    </select> <label for=""> <a data-toggle="modal" data-target="#exampleModal" style="color: blue; text-decoration: underline;">Can't find your location? <strong>&#9432</strong></a></label> <br>
+                    
+                </div>
+                
+                <div class="col-lg-6">
+                    <label for="">Personal contact number</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="11" oninput="this.className='form-control text_box requiredInput'" oncopy="return false" onpaste="return false"  onkeypress="return isNumber(event)" pattern="^[0-9]*$" placeholder="Personal contact number" name="personalNumber" oncopy="return false" onpaste="return false">
+                    <label for="">Contact person in case of emergency</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Contact person in case of emergency" name="contactPerson_Name" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    
+                    <label for="">Contact person's mobile number</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="11" oninput="this.className='form-control text_box requiredInput'" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Contact person's mobile number" name="contactPerson_Number">
+                    <label for="">Relationship to the contact person</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Relationship to the contact person" name="contactPerson_Relationship" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="">Blood type</label>
+                    <input type="text" class="form-control text_box" id="" maxlength="100" placeholder="Blood type" name="bloodType">
+                    <label for="">Religion</label>
+                    <input type="text" class="form-control text_box" id="" maxlength="100" placeholder="Religion" name="religion">
+                    <label for="">Civil status</label> <label class="required">*</label>
+                    <input type="text" class="form-control text_box requiredInput" maxlength="100" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Civil status" name="civilStatus" onkeypress="return isName(event)" oncopy="return false" onpaste="return false">
+                    <label for="">Height and Weight</label>
+                    <div class="input-group">                        
+                        <text id="addon">H</text>
+                        <input type="text" class="form-control hw" placeholder="Height in cm" name="height" maxlength="6" oncopy="return false" onpaste="return false" onkeypress="return isFloat(event, this.id)">
+
+                        <text id="addon">W</text>
+                        <input type="text" class="form-control" placeholder="Weight in KG" name="weight" maxlength="6" oncopy="return false" onpaste="return false" onkeypress="return isFloat(event, this.id)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDUCATIONAL BACKGROUND -->
+
+            <div class="form-group row tab">
+                <div class="col">                   
+                    
+                    <div class="row">
+                        <h3>Elementary</h3>
+                        <div class="col-lg-8">
+                            <label for="">Name of School</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Name of School" name="e_schoolName">
+                        </div>
+                        
+                        <div class="col-lg-2">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="e_from" placeholder="Year" maxlength="4" id="e_from" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="e_to" placeholder="Year" maxlength="4" id="e_to" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        
+                        <div class="col-lg-7">
+                            <label for="">Course/Degree/Grade Completed and Awards Received</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Course/Degree/Grade Completed and Awards Received" name="e_awards">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Secondary</h3>
+                        <div class="col-lg-8">
+                            <label for="">Name of School</label>
+                            <input type="text" class="form-control text_box"id="" placeholder="Name of School" name="s_schoolName">
+                        </div>
+                        
+                        <div class="col-lg-2">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="s_from" placeholder="Year" maxlength="4" id="s_from" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="s_to" placeholder="Year" maxlength="4" id="s_to" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        
+                        <div class="col-lg-7">
+                            <label for="">Course/Degree/Grade Completed and Awards Received</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Course/Degree/Grade Completed and Awards Received" name="s_awards">
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="row">
+                        <h3>Collegiate</h3>
+                        <div class="col-lg-8">
+                            <label for="">Name of School</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Name of School" name="c_schoolName">
+                        </div>
+                        
+                        <div class="col-lg-2">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="c_from" placeholder="Year" maxlength="4" id="c_from" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="c_to" placeholder="Year" maxlength="4" id="c_to" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        
+                        <div class="col-lg-7">
+                            <label for="">Course/Degree/Grade Completed and Awards Received</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Course/Degree/Grade Completed and Awards Received" name="c_awards">
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="row">
+                        <h3>Masteral Degree</h3>
+                        <div class="col-lg-8">
+                            <label for="">Name of School</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Name of School" name="m_schoolName">
+                        </div>
+                        
+                        <div class="col-lg-2">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="m_from" placeholder="Year" maxlength="4" id="m_from" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="m_to" placeholder="Year" maxlength="4" id="m_to" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        
+                        <div class="col-lg-7">
+                            <label for="">Course/Degree/Grade Completed and Awards Received</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Course/Degree/Grade Completed and Awards Received" name="m_awards">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Others</h3>
+                        <div class="col-lg-8">
+                            <label for="">Name of School</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Name of School" name="o_schoolName">
+                        </div>
+                        
+                        <div class="col-lg-2">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="o_from" placeholder="Year" maxlength="4" id="o_from" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="o_to" placeholder="Year" maxlength="4" id="o_to" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        
+                        <div class="col-lg-7">
+                            <label for="">Course/Degree/Grade Completed and Awards Received</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Course/Degree/Grade Completed and Awards Received" name="o_awards">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Special skills and abilities</h3>
+                        <div class="col-lg-10">
+                            <label for="">Other hobbies or skills</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Other hobbies or skills" name="specialSkills">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORK EXPERIENCE -->
+
+            <div class="form-group row tab">
+                <div class="col">
+                    <div class="row">
+                        <h3>Work #1</h3>
+                        <div class="col-lg-8">
+                            <label for="">Employers and Address</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Employers and Address" name="workEmployer1">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Company Tel.#</label>
+                            <input type="email" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="workNumber1">
+                        </div>                
+                        <div class="col-lg-3">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" name="workFrom1"  placeholder="Year" id="workFrom1" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" name="workTo1"  placeholder="Year" id="workTo1" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">Position held</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Position held" name="workPosition1">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="">Reason for leaving</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Reason for leaving" name="workReasonForLeaving1">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Work #2</h3>
+                        <div class="col-lg-8">
+                            <label for="">Employers and Address</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Employers and Address" name="workEmployer2">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="workNumber2">
+                        </div>                
+                        <div class="col-lg-3">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" id="workFrom2" placeholder="Year" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" name="workFrom2" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" id="workTo2" placeholder="Year" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" name="workTo2" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">Position held</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Position held" name="workPosition2">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="">Reason for leaving</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Reason for leaving" name="workReasonForLeaving2">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Work #3</h3>
+                        <div class="col-lg-8">
+                            <label for="">Employers and Address</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Employers and Address" name="workEmployer3">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="workNumber3">
+                        </div>                
+                        <div class="col-lg-3">
+                            <label for="">From</label>
+                            <input type="text" class="form-control text_box" id="workFrom3" placeholder="Year" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" name="workFrom3" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="">To</label>
+                            <input type="text" class="form-control text_box" id="workTo3" placeholder="Year" maxlength="4" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" name="workTo3" onblur="checkYear()" onfocus="checkYear()">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">Position held</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Position held" name="workPosition3">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="">Reason for leaving</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Reason for leaving" name="workReasonForLeaving3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILY BACKGROUND -->
+
+            <div class="form-group row tab">
+                <div class="alert alert-info" role="alert">
+                    <label class="required">*</label> indicates required field
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <h3>Parents</h3>
+                        <div class="col-lg-8">
+                            <label for="">Father's name</label> <label class="required">*</label>
+                            <input type="text" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Father's name" name="father_name" onkeypress="return isName(event)">
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label> <label class="required">*</label>
+                            <input type="date" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" id="father_birthdate" placeholder="Birthdate" name="father_birthdate" onkeypress="return isName(event)">
+                        </div>                    
+                        <div class="col-lg-6">
+                            <label for="">Occupation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Occupation" name="father_occupation">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="father_companyNumber">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">Mother's name</label> <label class="required">*</label>
+                            <input type="text" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" id="" placeholder="Mother's name" name="mother_name" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label> <label class="required">*</label>
+                            <input type="date" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" id="mother_birthdate" placeholder="Birthdate" name="mother_birthdate" onkeypress="return isName(event)">
+                        </div>                    
+                        <div class="col-lg-6">
+                            <label for="">Occupation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Occupation" name="mother_occupation">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="mother_companyNumber">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Sibling/s</h3>
+                        <div class="col-lg-8">
+                            <label for="">1. Brother/Sister's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Brother/Sister's name" name="sibling_name1" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label>
+                            <input type="date" class="form-control text_box" id="sibling_birthdate1" placeholder="Birthdate" name="sibling_birthdate1" onkeypress="return isName(event)">
+                        </div>                    
+                        <div class="col-lg-6">
+                            <label for="">Occupation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Occupation" name="sibling_occupation1">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="sibling_companyNumber1">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">2. Brother/Sister's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Brother/Sister's name" name="sibling_name2" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label>
+                            <input type="date" class="form-control text_box" id="sibling_birthdate2" placeholder="Birthdate" name="sibling_birthdate2" onkeypress="return isName(event)">
+                        </div>                    
+                        <div class="col-lg-6">
+                            <label for="">Occupation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Occupation" name="sibling_occupation2">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="">Company Tel.#</label>
+                            <input type="text" class="form-control text_box" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)" placeholder="Company Tel.#" name="sibling_companyNumber2">
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="row">
+                        <h3>Children</h3>
+                        <div class="col-lg-8">
+                            <label for="">1. Child's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Child's name" name="children_name1" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label>
+                            <input type="date" class="form-control text_box" id="children_birthdate1" placeholder="Birthdate" name="children_birthdate1" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">2. Child's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Child's name" name="children_name2" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Birthdate</label>
+                            <input type="date" class="form-control text_box" id="children_birthdate2" placeholder="Birthdate" name="children_birthdate2" onkeypress="return isName(event)">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Person/s working at CRTI known to you.</h3>
+                        <div class="col-lg-8">
+                            <label for="">1. Person's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Person's name" name="personcrt_name1" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Relation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Relation" name="personcrt_relationship1" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">2. Person's name</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Person's name" name="personcrt_name2" onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Relation</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Relation" name="personcrt_relationship2" onkeypress="return isName(event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LICENSES -->
+
+            <div class="form-group row tab">
+                <div class="col">
+                    <div class="row">
+                        <div class="alert alert-info" role="alert">
+                            <label class="required">*</label> indicates required field
+                        </div>
+                        <!-- <h3>License</h3> -->
+                        <div class="col-lg-8">
+                            <label for="">License Number</label> <label class="required">*</label>
+                            <input type="text" class="form-control text_box requiredInput" id="" placeholder="License Number" name="licenseNumber1" maxlength="30" oninput="this.className='form-control text_box requiredInput'" oncopy="return false" onpaste="return false" onkeypress="return">
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="">Expiry Date</label> <label class="required">*</label>
+                            <input type="date" class="form-control text_box requiredInput" id="licenseExpiry1" placeholder="Expiry Date" name="licenseExpiry1"  maxlength="30" oninput="this.className='form-control text_box requiredInput'" oncopy="return false" onpaste="return false"  onkeypress="return isName(event)">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Rating</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Rating" name="licenseRating1" maxlength="30">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Remarks</label>
+                            <input type="text" class="form-control text_box" id="" placeholder="Remarks" name="licenseRemarks1" maxlength="30">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label for="" class="info-notes"><strong>Note: </strong>We only accept applicants with Professional licenses. But if you are considering changing your license classification from Non-professional to Professional, we might consider!</label> <br> <br>
+                            <label for="">Type of License</label>
+                            <div class="radio_group">
+                                <input type="radio" class="typeOfLicense" name="licenseType1" value="Professional"> Professional
+                                <input type="radio" checked class="typeOfLicense" name="licenseType1" value="Non-Professional"> Non-professional    
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label for="">Restriction</label> <br>  
+                            <div class="restriction_group">
+                                <input type="checkbox" id="restriction1" name="restriction1" value="1" checked="checked" class="restriction">
+                                <label for="restriction1"> 1</label>
+                                <input type="checkbox" id="restriction2" name="restriction1" value="2" class="restriction">
+                                <label for="restriction2"> 2</label>
+                                <input type="checkbox" id="restriction3" name="restriction1" value="3" class="restriction">
+                                <label for="restriction3"> 3</label>
+                                <input type="checkbox" id="restriction4" name="restriction1" value="4" class="restriction">
+                                <label for="restriction4"> 4</label>
+                                <input type="checkbox" id="restriction5" name="restriction1" value="5" class="restriction">
+                                <label for="restriction5"> 5</label>
+                                <input type="checkbox" id="restriction6" name="restriction1" value="6" class="restriction">
+                                <label for="restriction6"> 6</label>
+                                <input type="checkbox" id="restriction7" name="restriction1" value="7" class="restriction">
+                                <label for="restriction7"> 7</label>
+                                <input type="checkbox" id="restriction8" name="restriction1" value="8" class="restriction">
+                                <label for="restriction8"> 8</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="">Scanned Driver's License</label> <label class="required">*</label>
+                            <input type="file" class="form-control text_box requiredInput" oninput="this.className='form-control text_box requiredInput'" name="license_file1" id="license_file1" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- ATTACHMENTS -->
+
+            <div class="form-group row tab">
+                <div class="col">
+                    <div class="row">
+                        <h3>Profile Photo</h3>
+                        <div class="col-lg-12">
+                            <!-- <label for="">Profile photo</label> <br> -->
+                            <img class="profile-img" id="blah" src="/images/180.png" alt="Image not found" />
+                            <input type="file" id="profile_photo" class="form-control text_box" placeholder="" onchange="readURL(this)" name="profile_photo" accept="image/x-png,image/gif,image/jpeg">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>ID's and other</h3>
+                        <div class="col-lg-6">
+                            <label for="">1. SSS number</label>
+                            <input type="text" class="form-control text_box" placeholder="SSS number" name="sss_number" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Scanned SSS ID</label>
+                            <input type="file" class="form-control text_box" id="sss_file" name="sss_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="">2. Pag-IBIG</label>
+                            <input type="text" class="form-control text_box" placeholder="Pag-IBIG ID number" name="pagibig_number" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Scanned Pag-IBIG ID</label>
+                            <input type="file" class="form-control text_box" id="pagibig_file" name="pagibig_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="">3. TIN number</label>
+                            <input type="text" class="form-control text_box" placeholder="TIN number" name="tin_number" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Scanned TIN ID</label>
+                            <input type="file" class="form-control text_box" id="tin_file" name="tin_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="">4. PhilHealth ID</label>
+                            <input type="text" class="form-control text_box" placeholder="PhilHealth ID number" name="philhealth_number" oncopy="return false" onpaste="return false" onkeypress="return isNumber(event)">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Scanned PhilHealth ID</label>
+                            <input type="file" class="form-control text_box" id="philhealth_file" name="philhealth_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+
+                        <div class="col-lg-8">
+                            <label for="">5. MDR</label>
+                            <input type="file" class="form-control text_box" id="mdr_file" name="mdr_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="">6. NBI Clearance</label>
+                            <input type="file" class="form-control text_box" id="nbi_file" name="nbi_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>                    
+                        <div class="col-lg-8">
+                            <label for="">7. Brgy. Clearance</label>
+                            <input type="file" class="form-control text_box" id="brgyclearance_file" name="brgyclearance_file" accept="image/x-png,image/gif,image/jpeg,.pdf">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3>Socials</h3>
+                        <div class="col-lg-8">
+                            <label for="">Facebook</label> <br>
+                            <input type="text" class="form-control text_box" placeholder="Facebook" name="facebook">
+                            <label for="">Viber</label>
+                            <input type="text" class="form-control text_box" placeholder="Viber" name="viber">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESSAY PART -->
+            <div class="form-group row tab">
+                <div class="col">
+                    <div class="row">
+                        <div class="alert alert-info" role="alert">
+                            <label class="required">*</label> indicates required field
+                        </div>
+                        <!-- TITLE: ESSAY TEST -->
+                        <h3 class="text-center">English Essay</h3>
+                        <div class="col">
+                            <label for="">1. At your last job, how did you fill downtime?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" id="requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" rows="3" placeholder="Write your answer here..." required name="englishAnswer1"></textarea>
+
+                            <label for="">2. Tell   me  about  your  last  performance  review.  What  was  mentioned about how you could improve? Any	 re-occurring  themes?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer2"></textarea>
+
+                            <label for="">3. Which situations kept you from coming to work on time at your last job? How often did that occur?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer3"></textarea>
+
+                            <label for="">4. Describe a recent problem you had with one of your manager’s decisions . How did you handle it?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer4"></textarea>
+
+                            <label for="">5. What about your character makes you a good candidate for this job?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer5"></textarea>
+
+                            <label for="">6. Priorities often change suddenly throughout  the day. If you are asked to quickly do another task,  how does that affect your mood? What if it’s the third time before noon?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer6"></textarea>
+
+                            <label for="">7. What do you feel is an acceptable amount of days to be absent in a calendar year?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer7"></textarea>
+
+                            <label for="">8. How do you handle situations that could cause you to be tardy or absent?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer8"></textarea>
+
+                            <label for="">9. How have you  responded in the past when you found another employee was stealing?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer9"></textarea>
+
+                            <label for="">10. 24/7 operations  are  like  relay  races  where  you  take  the baton, run with it and then pass it on smoothly. How do you make seamless  transitions on shift changes?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer10"></textarea>
+
+                            <label for="">11. How have you responded in the past when your replacement calls in sick and a substitute will take over an  hour to come in?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer11"></textarea>
+
+                            <label for="">12. During the last year, when your replacement hasn’t shown up and your manager asked you to stay late,  what percentage of the time have you stayed late?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer12"></textarea>
+
+                            <label for="">13. Think about the last time your manager criticised your work, How did you respond?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer13"></textarea>
+
+                            <label for="">14. Give an example of when you did something without being asked. Can you give me another example?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer14"></textarea>
+
+                            <label for="">15. Tell me about your most frustrating experience as a driver, How did you handle it?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="englishAnswer15"></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h3 class="text-center">Filipino Essay</h3>
+                        <div class="col">
+                            <label for="">1. Anong paguugali ang iyong maipagmamalaki para tanggapin ka sa kumpanyang ito ng CRTI?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer1"></textarea>
+
+                            <label for="">2. Sa huling employment mo, ano ang ginagawa mo sa mga oras na tapos na ang trabaho mo o kaya ay naghihintay ka sa client mo.</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer2"></textarea>
+
+                            <label for="">3. Ano ang naging feedback sa iyo ng huling employer mo? Saang parte ng trabaho mo dapat kang magimprove?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer3"></textarea>
+
+                            <label for="">4. Anong mga bagay ang nagiging dahilan ng iyong pagkahuli sa trabaho. Kung nangyayari ito, gaano kadalas?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer4"></textarea>
+
+                            <label for="">5. Magbigay ka ng pinakahuling di magandang pangyayari na naganap sa pagitan mo at ng iyong huling employer. Ano ang ginawa mo para ito’y masolusyunan?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer5"></textarea>
+
+                            <label for="">6. Ang mga prioridad sa trabaho ay maaaring magbago sa loob ng isang araw. Kung magiiba ang iyong schedule sa araw ding iyon, maaapektuhan ba nito ang iyong damdamin at kaisipan tungkol sa iyong trabaho? Paano kung 3 beses itong mangyari sa loob ng kalahating araw lamang?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer6"></textarea>
+
+                            <label for="">7. Ano ang dapat mong gawin kung makita mo ang kapwa mo empleyado sa akto ng pagnanakaw?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer7"></textarea>
+
+                            <label for="">8. Ang negosyo ng kumpanya ay puwedeng 24/7 operations, o 24 na oras araw-araw, sa loob ng 7 araw, at kailangan ang mabilisang pagkilos at madaliang pagsunod. Paano ka makakasunod sa kinakailangang sistema para madaling matapos ang kinakailangang trabaho?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer8"></textarea>
+
+                            <label for="">9. Nasa sitwasyon kang kagagaling mo lamang sa pagseserbisyo sa isang kliyente. Paano ka magresponde sa isang tawag sa trabaho, para sa isang kliyente, kung ang papalit sa iyo sa oras na iyon ay biglaang nagkasakit at ang isa pang tinawagang papalit ay aabutin ng isang oras para makarating sa lugar kung saan nandoon ang kliyente.</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer9"></textarea>
+
+                            <label for="">10. Noong nakaraang taon at di dumating ang iyong karelyebo, inatasan ka ng iyong Supervisor na maghintay, gaano ang pinakamatagal na oras o minutong iyong ipinaghintay?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer10"></textarea>
+
+                            <label for="">11. Kailan ang huling pagkakataon na binigyan ka ng feedback ng iyong Superior, tungkol sa iyong trabaho. Ano ang naging reaksyon mo?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer11"></textarea>
+
+                            <label for="">12. Magbigay ka ng dalawa o tatlong halimbawa ng mga pagkakataong gumawa ka ng mga bagay na di na kailangang pagutusan, at ano ang naging bunga nito.</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer12"></textarea>
+
+                            <label for="">13. Magbigay ka ng isang nakapanlulumong pangyayari sa buhay mo bilang isang driver, at paano mo ito hinarap o tinanggap?</label> <label class="required">*</label>
+                            <textarea class="form-control requiredInput" maxlength="300" oninput="this.className='form-control requiredInput'" id="" rows="3" placeholder="Write your answer here..." required name="filipinoAnswer13"></textarea>
+
+                            <div class="alert alert-warning" role="alert">
+                                <label><input type="checkbox" id="checkform1" onchange="updateCheck()"> I hereby affirm to the best of my knowledge that all the answers to the foregoing are true and correct. <label class="required">*</label></label>
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                <label><input type="checkbox" id="checkform2" onchange="updateCheck()"> I further acknowledge that any misrepresentation in the foregoing answers and data which may subsequently be found out is sufficient cause for my dismissal by CRTI. <label class="required">*</label></label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>     
+            </div>
+            <!-- BUTTONS -->
+
+            <div style="overflow:auto;">                
+                <div style="float:right; margin-top: 20px;">                
+                    
+                    <button type="button" id="prevBtn" class="btn-back" onclick="nextPrev(-1); topFunction();">&larr; BACK </button>
+                    <button type="button" id="nextBtn" class="btn-submit" onclick="nextPrev(1); topFunction()">NEXT &rarr;</button>
+                </div>
+            </div>
+            
+        </form>
+        <!-- <button type="button" id="discardBtn" class="btn-discard" onclick="">DISCARD</button> -->
+        <!-- <a href="/">Want to discard your application?</a> -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 200px">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sorry :(</h5>
+                </div>
+                <div class="modal-body">
+                    <label for=""><strong>We only accept applicants that are in the following areas: Metro Manila and Laguna</strong></label>
+                    <label for=""></label>
+                    <label for="">You can continue your application by clicking the Back button or discard the application by clicking the Discard Application button</label>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                  <button type="button" class="btn btn-primary" id="confirmPassword" onclick="window.location='/'">Discard Application</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-bottom text-center">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+</body>
+<script src="/script.js"></script>
+</html>

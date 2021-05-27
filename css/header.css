@@ -1,0 +1,28 @@
+
+#navbar {
+    position: fixed;
+    overflow: hidden;
+    background-color: #fff;
+    width: 100%;
+    top: 0;
+    z-index: 2000;
+    box-shadow: 1px 2px #bdc3c0;
+}
+
+.headerLogo{
+    height: 80px;
+    width: auto;
+    margin: auto;
+    padding: 10px;
+    display: block;
+}
+
+@media only screen and (max-width: 500px) {
+    .headerLogo{
+        height: 10vh;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
